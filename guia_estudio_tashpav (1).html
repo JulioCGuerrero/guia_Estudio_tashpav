@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדריך לימוד תשפ"ו – הלכות שנה שלמה</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap');
+
+  :root {
+    --bg: #0d0c0a;
+    --surface: #161410;
+    --border: #2a2520;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a6230;
+    --text: #e8e0d0;
+    --text-muted: #8a8070;
+    --text-dim: #5a5045;
+    --accent-tishrei: #4a7c6b;
+    --accent-jeshvan: #5c6b8a;
+    --accent-kislev: #7a5c8a;
+    --accent-tevet: #6b4a4a;
+    --accent-shvat: #4a6b5c;
+    --accent-adar: #8a6b4a;
+    --accent-elul: #6b5c4a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(180deg, #0d0c0a 0%, #1a1610 50%, #0d0c0a 100%);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 48px 32px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+  .header-ornament {
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+  }
+  .header h1 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,12,10,0.97);
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    padding: 16px 18px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .nav-btn:hover { color: var(--text); }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* MAIN */
+  .main { max-width: 1100px; margin: 0 auto; padding: 0 16px 80px; }
+
+  /* MONTH SECTION */
+  .month-section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .month-section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .month-header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .month-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .month-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .month-topic {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(16px, 3vw, 24px);
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .month-simanim {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  .month-simanim span {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 10px;
+    margin: 2px;
+    display: inline-block;
+    font-family: 'Frank Ruhl Libre', serif;
+  }
+
+  /* EXAM QUESTIONS BOX */
+  .exam-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.02) 100%);
+    border: 1px solid var(--gold-dim);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+  .exam-box-title {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .exam-q {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .exam-q:last-child { border-bottom: none; }
+  .exam-q strong { color: var(--gold-light); font-weight: 500; }
+
+  /* TOPIC CARDS */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .topic-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .topic-card.open { border-color: rgba(201,168,76,0.5); }
+
+  .topic-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    gap: 12px;
+  }
+  .topic-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+  .topic-siman {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 11px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .topic-name {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .topic-chevron {
+    color: var(--text-dim);
+    font-size: 12px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .topic-card.open .topic-chevron { transform: rotate(180deg); color: var(--gold); }
+
+  .topic-body {
+    display: none;
+    padding: 0 18px 18px;
+    border-top: 1px solid var(--border);
+  }
+  .topic-card.open .topic-body { display: block; }
+
+  /* RULES */
+  .rule-list { list-style: none; }
+  .rule-item {
+    padding: 8px 0 8px 20px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    line-height: 1.7;
+  }
+  .rule-item:last-child { border-bottom: none; }
+  .rule-item::before {
+    content: '—';
+    position: absolute;
+    right: 0;
+    color: var(--gold-dim);
+    font-size: 11px;
+    top: 10px;
+  }
+  .rule-item strong { color: var(--text); font-weight: 500; }
+  .rule-item em { color: var(--gold); font-style: normal; font-size: 12px; }
+
+  .sub-section {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(255,255,255,0.06);
+  }
+  .sub-section-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  /* PRIORITY BADGES */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-right: 4px;
+    text-transform: uppercase;
+  }
+  .badge-lekhatkhila { background: rgba(74,124,107,0.2); color: #6bbfa0; border: 1px solid rgba(74,124,107,0.4); }
+  .badge-bediavad { background: rgba(138,107,74,0.2); color: #c9a84c; border: 1px solid rgba(138,107,74,0.4); }
+  .badge-important { background: rgba(180,60,60,0.2); color: #e88080; border: 1px solid rgba(180,60,60,0.4); }
+  .badge-majloket { background: rgba(92,107,138,0.2); color: #8aaad0; border: 1px solid rgba(92,107,138,0.4); }
+
+  /* SUMMARY TABLE */
+  .summary-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+  .summary-table th {
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    padding: 8px 12px;
+    text-align: right;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: 1px solid var(--border);
+  }
+  .summary-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .summary-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* SEARCH */
+  .search-bar {
+    padding: 24px 0 8px;
+    margin-bottom: 8px;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: right;
+  }
+  .search-input:focus { border-color: var(--gold-dim); }
+  .search-input::placeholder { color: var(--text-dim); }
+
+  /* COLORS per month */
+  .month-elul .month-title { color: #c9a84c; }
+  .month-tishrei .month-title { color: #6bbfa0; }
+  .month-jeshvan .month-title { color: #8aaad0; }
+  .month-kislev .month-title { color: #b08ad0; }
+  .month-tevet .month-title { color: #d08a8a; }
+  .month-shvat .month-title { color: #8ad0b0; }
+  .month-adar .month-title { color: #d0b08a; }
+
+  .month-elul .topic-card.open { border-color: rgba(201,168,76,0.5); }
+  .month-tishrei .topic-card.open { border-color: rgba(107,191,160,0.5); }
+  .month-jeshvan .topic-card.open { border-color: rgba(138,170,208,0.5); }
+  .month-kislev .topic-card.open { border-color: rgba(176,138,208,0.5); }
+  .month-tevet .topic-card.open { border-color: rgba(208,138,138,0.5); }
+  .month-shvat .topic-card.open { border-color: rgba(138,208,176,0.5); }
+  .month-adar .topic-card.open { border-color: rgba(208,176,138,0.5); }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  /* Full-width card */
+  .full-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .full-card-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .full-card-title .siman-tag {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-ornament">בס״ד · תשפ״ו</div>
+  <h1>מדריך לימוד תשפ״ו</h1>
+  <div class="header-sub">הלכות שבעה חודשים – מאלול עד אדר</div>
+  <div class="header-stats">
+    <div class="stat"><span class="stat-num">7</span><span class="stat-label">חודשים</span></div>
+    <div class="stat"><span class="stat-num">70</span><span class="stat-label">שאלות</span></div>
+    <div class="stat"><span class="stat-num">~40</span><span class="stat-label">סימנים</span></div>
+    <div class="stat"><span class="stat-num">∞</span><span class="stat-label">הלכות</span></div>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showMonth('elul')">אלול</button>
+  <button class="nav-btn" onclick="showMonth('tishrei')">תשרי</button>
+  <button class="nav-btn" onclick="showMonth('jeshvan')">חשון</button>
+  <button class="nav-btn" onclick="showMonth('kislev')">כסליו</button>
+  <button class="nav-btn" onclick="showMonth('tevet')">טבת</button>
+  <button class="nav-btn" onclick="showMonth('shvat')">שבט</button>
+  <button class="nav-btn" onclick="showMonth('adar')">אדר</button>
+</nav>
+
+<div class="main">
+
+<!-- ===== ELUL ===== -->
+<div id="month-elul" class="month-section month-elul active">
+  <div class="month-header">
+    <div class="month-tag" style="color:#c9a84c">חודש א׳ · ELUL</div>
+    <div class="month-title">אלול</div>
+    <div class="month-topic">הלכות חגים – שופר, יום כיפור, סוכה</div>
+    <div class="month-simanim">
+      <span>תקפ״ט</span><span>תק״צ</span><span>תרי״ב</span><span>תרי״ז</span>
+      <span>תרי״ח</span><span>תרכ״ה</span><span>תרכ״ו</span><span>תרכ״ט</span><span>תרל״ט</span>
+    </div>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-box-title">🎯 שאלות המבחן</div>
+    <div class="exam-q"><strong>1.</strong> יצא יד״ח בתקיעות – האם מוציא אחרים? תקיעות לנשים – חיוב ברכה, מי מברך?</div>
+    <div class="exam-q"><strong>2.</strong> כוונה בתקיעות: תקע ללמוד + להוציא אחרים / שמע מבחוץ – האם יצא?</div>
+    <div class="exam-q"><strong>3.</strong> מניין תקיעות: מדאורייתא / מדרבנן. שברים בנשימה אחת. תר״ת בנשימה אחת.</div>
+    <div class="exam-q"><strong>4.</strong> יולדת תוך ג׳ ימים ביוה״כ – ספירת הימים + אכילה לשיעורין.</div>
+    <div class="exam-q"><strong>5.</strong> חולה שאוכל ביוה״כ – קידוש? ברכת המזון? יעלה ויבוא?</div>
+    <div class="exam-q"><strong>6.</strong> פסול ״תעשה ולא מן העשוי״ בסוכה – ג׳ מקרים (תחת בית, גג מתקפל, סיכוך על תקרה).</div>
+    <div class="exam-q"><strong>7.</strong> מחצלת של קנים – חששות ופסיקה למעשה.</div>
+    <div class="exam-q"><strong>8.</strong> ישיבה בסוכה – כלים מותרים/אסורים, שיעור בפת ומזונות, פירות חוץ לסוכה.</div>
+    <div class="exam-q"><strong>9.</strong> מצטער – יצא מחמת גשמים ופסקו – מתי חוזר?</div>
+    <div class="exam-q"><strong>10.</strong> ברכת לישב בסוכה – כמה סעודות / יצא לסוכה אחרת.</div>
+  </div>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תקפ״ט</span>
+          <span class="topic-name">הוצאת אחרים – שופר</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>ערבות:</strong> מי שיצא – יכול להוציא אחרים. מי שאינו מחויב – אינו מוציא.</li>
+          <li class="rule-item"><strong>קטן:</strong> אפילו בן 13 – אם לא ידוע שהביא שתי שערות – לא מוציא.</li>
+          <li class="rule-item"><strong>אשה:</strong> פטורה ממ״ע שהז״ג. יכולה לתקוע לעצמה בלי ברכה (רמ״א: יכולה לברך). מי שיצא יכול לתקוע לה.</li>
+          <li class="rule-item"><strong>חרש המדבר:</strong> שומע ואינו מדבר – כשר לתקוע אם אחר מברך.</li>
+          <li class="rule-item"><strong>מתלמד:</strong> מי שמתאמן – יכול לקיים כוונה ולצאת, אם תקע כהוגן.</li>
+          <li class="rule-item"><strong>כוונה:</strong> שומע ואין לו כוונה – לא יצא. אך מי שבא לבהכ״נ – יש חזקה שהיתה לו כוונה.</li>
+          <li class="rule-item"><strong>אינו שומע/ישן:</strong> סומא חייב. שמע מתוך שינה – לא יצא אא״כ היה לו כוונה קודם.</li>
+          <li class="rule-item"><strong>מוּדר הנאה:</strong> מצוות לאו ליהנות ניתנו – מותר לתקוע לו. אם אמר ״תוציאני״ – אסור.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תק״צ</span>
+          <span class="topic-name">מניין תקיעות ופרטיהן</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מדאורייתא:</strong> ג׳ תרועות (תשר״ת × 3).</li>
+          <li class="rule-item"><strong>מדרבנן:</strong> 30 קולות (מנהג). 100 קולות (מנהג אחר).</li>
+          <li class="rule-item"><strong>ספק בתרועה:</strong> לא ידוע אם גניחה (שברים) או יללה (תרועה) או שניהם → עושים תשר״ת, תש״ת, תר״ת.</li>
+          <li class="rule-item"><strong>שיעור תקיעה:</strong> כשיעור 9 קולות (תר״ת/תש״ת) או 18 (תשר״ת). לא להאריך שבר עד ט׳ קולות.</li>
+          <li class="rule-item"><strong>שברים-תרועה בנשימה אחת:</strong> מחלוקת. מנהג: בנשימה אחת (בישיבה) / שתי נשימות (בעמידה).</li>
+          <li class="rule-item"><strong>טעה באמצע הסדר:</strong> תלוי אם הקול ״שייך לאותו סדר״ – לפעמים ממשיך, לפעמים חוזר לתקיעה ראשונה.</li>
+          <li class="rule-item"><strong>שתק באמצע:</strong> בנשימה אחת – קול אחד. שתי נשימות – פוסל.</li>
+          <li class="rule-item"><strong>תרועה כפולה:</strong> שתי תרועות בנשימה אחת – כשרה (תרועה ארוכה).</li>
+          <li class="rule-item"><strong>מקום התקיעה:</strong> בקצה הצר בלבד – ״מן המיצר קראתי י-ה״.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תרי״ב</span>
+          <span class="topic-name">שיעורי אכילה ביוה״כ</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>שיעור אכילה לחיוב כרת:</strong> ככותבת הגסה ≈ 43 גרם. פחות מזה – איסור תורה אך פטור מכרת.</li>
+          <li class="rule-item"><strong>צירוף אוכל:</strong> אוכלים מצטרפים זה לזה. אוכל ומשקה – אין מצטרפין.</li>
+          <li class="rule-item"><strong>הפסק בין אכילות:</strong> תוך כדי אכילת פרס (7-9 דק׳) מצטרף. אחרי זה – לא.</li>
+          <li class="rule-item"><strong>שיעור שתייה:</strong> מלא לוגמיו ≈ 40 מ״ל (רוב רביעית). תלוי בגודל האיש.</li>
+          <li class="rule-item"><strong>דברים שאינם ראויים:</strong> מר/מקולקל – פטור אבל אסור מדרבנן. אם הוא אחרת איסור (חלב, נבלה) – חייב.</li>
+          <li class="rule-item"><strong>נגיעה במאכל:</strong> מותר לגעת. אין גזירה כבפסח.</li>
+          <li class="rule-item"><strong>שיעורים לאכילת חולה:</strong> פחות מ-30 גרם, עם הפסק 9 דקות (בדחק: 7/4/2).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תרי״ז–תרי״ח</span>
+          <span class="topic-name">חולה, יולדת ועוברה ביוה״כ</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>עוברה שהריחה:</strong> אם נשתנו פניה – מאכילים מיד. אם לא – רק אם אמרה ״צריכה אני״.</li>
+          <li class="rule-item"><strong>חולה שנשתנו פניו:</strong> מאכילים אפילו לא אמר ״לבי חלש״. אם לא נשתנו – רק אם יודע שהוא בסכנה.</li>
+          <li class="rule-item"><strong>יולדת תוך ג׳ ימים:</strong> אין מחשבים אלא מהלידה. לא תצום כלל. אם אומרת ״אינני צריכה״ – מאכילים.</li>
+          <li class="rule-item"><strong>יולדת 3–7 ימים:</strong> מאכילים כחולה שיש בו סכנה (רק אם אמרה ״צריכה״).</li>
+          <li class="rule-item"><strong>יולדת 7–30 ימים:</strong> חולה שאין בו סכנה – תלוי בהצהרתה ובדעת הרופא.</li>
+          <li class="rule-item"><strong>סמכות הרופא:</strong> רופא מומחה נאמן בספק נפשות. אפילו עכו״ם בקי. ״לב יודע מרת נפשו״ – החולה עצמו נאמן.</li>
+          <li class="rule-item"><strong>סדר מתן אוכל:</strong> התחל בכמה טיפות, ואחר כך פחות מהשיעור, ואחר כך השיעור. ״שיעור לפי ידיה״.</li>
+          <li class="rule-item"><strong>בולמוס:</strong> מאכילים מיד עד שיתבהרו עיניו – ללא המתנה.</li>
+          <li class="rule-item"><strong>ברכות החולה שאכל:</strong> יעלה ויבוא כיו״ט. אם חל בשבת – רצה. לא עושה קידוש.</li>
+        </ul>
+        <div class="sub-section">
+          <div class="sub-section-title">טבלת פסיקה – רופאים ומחלוקות</div>
+          <table class="summary-table">
+            <tr><th>מצב</th><th>פסיקה</th></tr>
+            <tr><td>רופא אומר כן + חולה אומר לא</td><td>מאכילים</td></tr>
+            <tr><td>2 רופאים אומרים לא + 1 אומר כן</td><td>מאכילים (ספק נפשות)</td></tr>
+            <tr><td>רופא + חולה אומרים לא + רופא אומר כן</td><td>לפי מי מומחה יותר</td></tr>
+            <tr><td>רופא ספקן + חולה ספקן</td><td>מאכילים (ספק נפשות)</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תרכ״ה–תרכ״ו</span>
+          <span class="topic-name">בניית הסוכה וסכך פסול</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>זמן בניה:</strong> מיד אחרי יוה״כ. המדקדקים – כבר בלילה.</li>
+          <li class="rule-item"><strong>סוכה תחת עץ:</strong> אם הענפים נותנים יותר צל מחמה – פסולה. אם רוב צל מסכך כשר – כשרה.</li>
+          <li class="rule-item"><strong>ענפים מחוברים לקרקע:</strong> עץ שענפיו מעורבים בסכך – אם יש בו צל יותר מחמה – פסולה.</li>
+          <li class="rule-item"><strong>גג מתקפל:</strong> אם פתחו אחרי שכבר היה הסכך – צריך ניענוע. אם הסוכה היתה כשרה ורק הסיר הגג – לא צריך.</li>
+          <li class="rule-item"><strong>תעשה ולא מן העשוי – 3 מקרים:</strong>
+            <br>א) סוכה תחת בית ואח״כ הסיר הגג – <em class="badge badge-important">פסולה</em> (הסוכה עצמה לא היתה כשרה)
+            <br>ב) גג מתקפל שנסגר ונפתח – אם הסכך היה כשר קודם – כשרה
+            <br>ג) סיכך על גבי תקרה ואח״כ הסיר התקרה – <em class="badge badge-important">פסולה</em> (צריך ניענוע)</li>
+          <li class="rule-item"><strong>כשר לסכך:</strong> גדל מן הארץ + תלוש + לא מקבל טומאה (קש, ענפים). לא: מתכות, כלים, אוכל.</li>
+          <li class="rule-item"><strong>מחצלות:</strong> גדולות לשם סיכוך – כשרות. אם מנהג לשכב עליהן – מקבלות טומאה ופסולות.</li>
+          <li class="rule-item"><strong>נסרים רחבים (4 טפחים):</strong> פסולים מגזרת תקרה. הנחה על הצד – גם פסול.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תרל״ט</span>
+          <span class="topic-name">ישיבה בסוכה – חיובים ופטורים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>עיקר הדין:</strong> לאכול, לשתות, לישון, לדבר בסוכה. ידבר רק דברי תורה.</li>
+          <li class="rule-item"><strong>כלים מותרים:</strong> כוסות וגביעים, אפילו של חרס.</li>
+          <li class="rule-item"><strong>כלים אסורים:</strong> קדרות, עריבות, שפודים, כדי מים – ישארו בחוץ.</li>
+          <li class="rule-item"><strong>שיעור המחייב:</strong> יותר מכביצה (54 גרם) בפת – חייב בסוכה ובברכה. מזונות – כנ״ל. פירות/שתייה – אינם מחייבים.</li>
+          <li class="rule-item"><strong>ליל א׳:</strong> חייב לאכול כזית פת בסוכה גם אם גשם. שאר הלילות – רק אם אוכל יותר מכביצה.</li>
+          <li class="rule-item"><strong>מצטער:</strong> פטור – קור, חום, יתושים, גשם. אל יתגאה ולא יקבל שכר ממי שמסבל עצמו.</li>
+          <li class="rule-item"><strong>גשם בליל א׳:</strong> ינסה להמתין. אם נכנס הביתה ופסק הגשם – חוזר לסוכה. אם ישן – יכול להישאר.</li>
+          <li class="rule-item"><strong>ברכת לישב בסוכה:</strong> מנהג: לברך רק בשעת אכילה. יצא ונכנס – אם יצא לצאת ממש – מברך שוב. אם ליציאה קצרה – לא מברך.</li>
+          <li class="rule-item"><strong>סוכה פסולה:</strong> אם בירך כשהסוכה היתה פסולה – צריך לאכול שוב ולברך. קידוש – לא צריך לחזור.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /topics-grid -->
+</div><!-- /month-elul -->
+
+
+<!-- ===== TISHREI ===== -->
+<div id="month-tishrei" class="month-section month-tishrei">
+  <div class="month-header">
+    <div class="month-tag" style="color:#6bbfa0">חודש ב׳ · TISHREI</div>
+    <div class="month-title">תשרי</div>
+    <div class="month-topic">הלכות יום טוב – מלאכות, כיבוי, עירוב תבשילין, יו״ט שני</div>
+    <div class="month-simanim">
+      <span>תצ״ה</span><span>תצ״ו</span><span>תקי״ב</span><span>תקי״ד</span><span>תקי״ח</span><span>תקכ״ז</span>
+    </div>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-box-title">🎯 שאלות המבחן</div>
+    <div class="exam-q"><strong>1.</strong> אלו מלאכות מותרות/אסורות ביו״ט לצורך אוכל נפש. קצירה ובצירה – מה"ת או מדרבנן?</div>
+    <div class="exam-q"><strong>2.</strong> ביתו עולה באש, אין סכנת נפשות – מותר לכבות? איזה גרם כיבוי התירו?</div>
+    <div class="exam-q"><strong>3.</strong> הבערת מדורה להתחמם ביו״ט. עישון סיגריות.</div>
+    <div class="exam-q"><strong>4.</strong> בישול/אפייה ביו״ט לצורך נכרים, קראים, מומרים, בני חיל.</div>
+    <div class="exam-q"><strong>5.</strong> הוספת פתילות לנר דולק למהר כיבויו.</div>
+    <div class="exam-q"><strong>6.</strong> יו״ט שני של גלויות – מי נוהג? הבדלים הלכתיים. דין תיירים ובחורי ישיבות.</div>
+    <div class="exam-q"><strong>7.</strong> נר של בטלה. הוספת אורה ביו״ט.</div>
+    <div class="exam-q"><strong>8.</strong> הוצאה ביו״ט – מה מותר ובאיזה הוצאה?</div>
+    <div class="exam-q"><strong>9.</strong> עירוב תבשילין – במה? שיעורו? שכח ולא ערב?</div>
+    <div class="exam-q"><strong>10.</strong> לא ערב עירוב תבשילין במזיד – הדלקת נר שבת, בישול לאחרים, תקנתו.</div>
+  </div>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תצ״ה</span>
+          <span class="topic-name">מלאכות ביו״ט – כללים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>כלל:</strong> כל האסור בשבת – אסור ביו״ט. חוץ ממלאכת אוכל נפש.</li>
+          <li class="rule-item"><strong>אוכל נפש:</strong> מותר לבשל, לאפות, להבעיר. אם היה אפשר לעשות מאתמול ולא עשה – אסור. אם לא היה זמן – מותר.</li>
+          <li class="rule-item"><strong>קצירה ובצירה:</strong> אסורות מדרבנן (חכמים אסרו כי הן מלאכות כבדות שמבטלות שמחה). לכן: במקום מצוה – גוי יכול.</li>
+          <li class="rule-item"><strong>מכשירי אוכל נפש:</strong> מותרים רק אם לא יכל לעשותם מאתמול.</li>
+          <li class="rule-item"><strong>כלל ״מיתוק טעם״:</strong> אם יאבד הטעם אם יכין מאתמול – מותר ביו״ט (פת, בשר). אם לא יאבד – אסור.</li>
+          <li class="rule-item"><strong>שינוי:</strong> אם שכח לעשות מאתמול – מותר בשינוי. אם אונס – אפילו בלי שינוי.</li>
+          <li class="rule-item"><strong>מוקצה ביו״ט:</strong> מחלוקת. מנהג: כמו שבת. אך מוקצה מחמת נולד – אסור אפילו למתירים.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תקי״ד</span>
+          <span class="topic-name">כיבוי, נרות וגרם כיבוי</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>כיבוי דליקה:</strong> אסור ביו״ט אפילו לצורך מגורים. ״תצורך אוכל נפש״ לא כולל הצלת בית.</li>
+          <li class="rule-item"><strong>גרם כיבוי:</strong> מותר – כגון שים עפר/חול סביב הנר שיכבה מעצמו.</li>
+          <li class="rule-item"><strong>חיתוך נר בסכין:</strong> אסור (תיקון כלי). חיתוך בידים – מחלוקת.</li>
+          <li class="rule-item"><strong>הוספת פתילות:</strong> אסור להוסיף פתילות לנר דולק. מותר להדליק שני קצות הנר.</li>
+          <li class="rule-item"><strong>נר של בטלה:</strong> להבעיר ללא צורך – אסור. לכבוד ביהכ״נ – מותר אפילו ביום ואין אנשים.</li>
+          <li class="rule-item"><strong>ברכת הדלקת נר:</strong> ״להדליק נר של יום טוב״. ביו״ט שני – גם מברך.</li>
+          <li class="rule-item"><strong>קיצור מפתילה:</strong> בידיים – יש מתירים לאחר ההדלקה. ניקוי פחם מהפתילה – בידיים מותר, בסכין אסור.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תקי״ב</span>
+          <span class="topic-name">בישול לנכרים ולבעלי חיים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>איסור בישול לגוי:</strong> ״לכם״ – לא לגויים. אסור לבשל עבורם ביו״ט.</li>
+          <li class="rule-item"><strong>אורח גוי:</strong> אם הזמינו ביו״ט – חוששים שיוסיף. אם הגיע מאליו – מותר לתת לו ממה שבישל.</li>
+          <li class="rule-item"><strong>קראים ומומרים:</strong> אם פועלים בניגוד לתורה – נחשבים כגויים.</li>
+          <li class="rule-item"><strong>בני חיל:</strong> מחלוקת. יש מתירים בשביל ״שלום מלכות״.</li>
+          <li class="rule-item"><strong>בישול לבעלי חיים:</strong> אסור. הוספה לסיר שכבר מבשל – מותר.</li>
+          <li class="rule-item"><strong>הוצאה לגוי:</strong> רק דרך גוי, ורק בכרמלית.</li>
+          <li class="rule-item"><strong>דרכי שלום:</strong> בכרמלית ע״י גוי – מותר אפילו להוציא לו.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תצ״ו</span>
+          <span class="topic-name">יו״ט שני של גלויות</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מי נוהג:</strong> בחו״ל. ירושלמים בחו״ל – שני ימים לדברים פומביים.</li>
+          <li class="rule-item"><strong>הבדל ראשון לשני:</strong> ביו״ט שני – כמעט כל ההלכות כמו ראשון. מת – מותר לטפל בו. תרופות – מותר בלי שינוי (דרבנן).</li>
+          <li class="rule-item"><strong>בזיון יו״ט שני:</strong> חמור מבזיון ראשון כי כולו דרבנן. שוגג (ע״פ הוראת רב שגה) – לא בנידוי.</li>
+          <li class="rule-item"><strong>תייר מא״י לחו״ל:</strong> עושה 2 ימים לדברים פומביים בתוך ישוב, בצנעה כמנהג מקומו.</li>
+          <li class="rule-item"><strong>תייר מחו״ל לא״י:</strong> עושה שני ימים. אם החליט לגור – עושה יום אחד.</li>
+          <li class="rule-item"><strong>בחורי ישיבות:</strong> כפי שהחליטו אם יחזרו – כן ינהגו.</li>
+          <li class="rule-item"><strong>הגדרת ״ישוב״:</strong> מקום שגרים בו קבע (לא מלון).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תקי״ח</span>
+          <span class="topic-name">הוצאה ביו״ט – מיתוך</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מיתוך שהותרה:</strong> כיוון שהתורה התירה מלאכות לצורך אוכל נפש – התירה גם שלא לצורך גמור, אם יש תועלת.</li>
+          <li class="rule-item"><strong>מה מותר לטלטל:</strong> לצורך הגוף (טיול עם תינוק, לולב, ספר תורה). לא לצורך כלל – אסור.</li>
+          <li class="rule-item"><strong>הוצאה לגוי:</strong> אסורה. לפי ג״ש – דרך גוי בכרמלית מותר.</li>
+          <li class="rule-item"><strong>מוקצה לצורך אוכל נפש:</strong> מותר לטלטל אפילו מוקצה.</li>
+          <li class="rule-item"><strong>סולם פרדסאות:</strong> מותר לטלטל (ניכר שהוא ליונים). סולם גג – אסור (מראית עין של תיקון).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תקכ״ז</span>
+          <span class="topic-name">עירוב תבשילין</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מהו:</strong> כשיו״ט חל ביום ו׳ – אסור לבשל ביו״ט לשבת ללא עירוב. מטרתו: להכשיר המשך הבישול.</li>
+          <li class="rule-item"><strong>במה מערבים:</strong> פת (כביצה) ותבשיל (כזית). בדיעבד – תבשיל בלבד מספיק. פת לבד – לא.</li>
+          <li class="rule-item"><strong>שיעור:</strong> כזית. רמ״א: כביצה. הפת – לכתחילה שלמה.</li>
+          <li class="rule-item"><strong>מה מותר:</strong> לבשל, לאפות, להדליק נרות לשבת.</li>
+          <li class="rule-item"><strong>שכח ולא ערב:</strong> יכול לבשל מעט לכבוד שבת, אבל חייב לאכול ממנה ביו״ט. אחרים יכולים לבשל עבורו.</li>
+          <li class="rule-item"><strong>עירוב של הרב:</strong> מועיל לכל מי שנסמך עליו. אך ״פושע״ אם נסמך לכתחילה. בדחק – מותר.</li>
+          <li class="rule-item"><strong>לא ערב במזיד:</strong> לא ידליק נר שבת, לא יבשל. אחרים יכולים. תקנתו: יתן מתנה ואחרים יבשלו.</li>
+          <li class="rule-item"><strong>ר״ה/שני ימי גלות:</strong> בר״ה – לא יכול לערב ביניהם (כיום ארוך). ביו״ט ב׳ של גלות – יכול לערב בתנאי.</li>
+          <li class="rule-item"><strong>אכל את העירוב:</strong> אם כבר בישל קצת – יכול לגמור. אם לא התחיל – אסור.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /month-tishrei -->
+
+
+<!-- ===== JESHVAN ===== -->
+<div id="month-jeshvan" class="month-section month-jeshvan">
+  <div class="month-header">
+    <div class="month-tag" style="color:#8aaad0">חודש ג׳ · JESHVAN</div>
+    <div class="month-title">חשון</div>
+    <div class="month-topic">הלכות קריאת שמע ותפילה</div>
+    <div class="month-simanim">
+      <span>נ״ה</span><span>נ״ח</span><span>פ״ט</span><span>צ׳</span>
+    </div>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-box-title">🎯 שאלות המבחן</div>
+    <div class="exam-q"><strong>1.</strong> עסקו בתורה ואחר כך התאסף מנין – קדיש? פסוקי דזמרה שנתאספו רק אחרי המזמורים?</div>
+    <div class="exam-q"><strong>2.</strong> מקצת מנין מתפללים שמ״ע / ישנים / חרשים המדברים – אפשר קדיש?</div>
+    <div class="exam-q"><strong>3.</strong> קטן, אונן, חרש, אשה במנין – לכתחילה ובדיעבד. יצאו מקצתן מהתפילה ומהקדיש.</div>
+    <div class="exam-q"><strong>4.</strong> זמן קריאת שמע – תחילה וסוף. קרא קודם לזמן.</div>
+    <div class="exam-q"><strong>5.</strong> לא קרא ק״ש בזמנה – ק״ש וברכותיה לאחר הזמן. שקעה החמה ולא קרא שחרית.</div>
+    <div class="exam-q"><strong>6.</strong> מה מותר/אסור לפני תפילת שחרית: שלום לחבר, אכילה ושתיה, לאכול אם התחיל לפני עלות השחר, לימוד, מנחה ומעריב, מכולת/ספר/בית מרחץ.</div>
+    <div class="exam-q"><strong>7.</strong> עיר עם מנין בצמצום ואחד רוצה לנסוע – הדין עם מי?</div>
+    <div class="exam-q"><strong>8.</strong> ״יכנס שיעור שני פתחים״ – ביאור. עדיפות ביהכ״נ או ביהמ״ד?</div>
+    <div class="exam-q"><strong>9.</strong> חציצה בין המתפלל לקיר – מקור. מיטה, בעלי חיים, אדם כחציצה?</div>
+    <div class="exam-q"><strong>10.</strong> תפילה בצד/אחורי/לפני רבו – תנאים. הגדרת רב. אביו.</div>
+  </div>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">נ״ה</span>
+          <span class="topic-name">מנין – הגדרות ופרטים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>דבר שבקדושה:</strong> קדיש, קדושה, ברכו, קריאת תורה, נשיאת כפים – צריכים מנין.</li>
+          <li class="rule-item"><strong>התחילו עשרה ויצאו:</strong> אם נשארה רובא (6) – ממשיכים את הסדר שהתחילו. לא מתחילים דבר חדש.</li>
+          <li class="rule-item"><strong>קטן:</strong> לא עולה למנין. בדחק – יש מתירים קטן אחד עם חומש.</li>
+          <li class="rule-item"><strong>אונן:</strong> בדרך כלל לא מצטרף. אלא אם המת בעיר אחרת ויש אחרים שמטפלים.</li>
+          <li class="rule-item"><strong>חרש שמדבר:</strong> מצטרף אם מבין ויודע מתי לענות.</li>
+          <li class="rule-item"><strong>ישן:</strong> מצטרף אם יכול לענות. לכתחילה לא יותר מאחד כזה.</li>
+          <li class="rule-item"><strong>מומר ומחלל שבת בפרהסיא:</strong> כגוי – לא מצטרף.</li>
+          <li class="rule-item"><strong>חיוב לשמור מנין:</strong> קהל יכול לחייב אדם שלא לנסוע ולשבור מנין. חייב לשלם לאחר.</li>
+          <li class="rule-item"><strong>עונה ממקום אחר:</strong> אם יש מנין קבוע במקום – יכול לענות. שכינה שורה על עשרה.</li>
+        </ul>
+        <div class="sub-section">
+          <div class="sub-section-title">יצאו מקצתן – טבלת הלכה</div>
+          <table class="summary-table">
+            <tr><th>מצב</th><th>הלכה</th></tr>
+            <tr><td>חזרת הש״ץ – נשאר 6</td><td>ממשיך קדושה וחזרה. שלם/חצי קדיש אחר – לא</td></tr>
+            <tr><td>ערבית – היה מנין לברכו</td><td>קדיש לפני עמידה – כן. קדיש תתקבל – לא</td></tr>
+            <tr><td>פסוקי דזמרה נאמרו לפני עשרה</td><td>מחלוקת – עדיף לא לומר קדיש</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">נ״ח</span>
+          <span class="topic-name">זמן קריאת שמע דשחרית</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>תחילה לכתחילה:</strong> מ״משיכיר״ – כשיכיר את חבירו מרחוק ≈ 4 בבקר.</li>
+          <li class="rule-item"><strong>סוף זמן:</strong> סוף שעה שלישית זמנית מן היום. זמן עיקרי מן התורה.</li>
+          <li class="rule-item"><strong>וותיקין:</strong> קוראים ק״ש קודם הנץ כדי לסמוך גאולה לתפילה בהנץ.</li>
+          <li class="rule-item"><strong>לא קרא בזמנה:</strong> עד שעה ד׳ – קורא עם ברכות. אחרי שעה ד׳ – קורא בלי ברכות.</li>
+          <li class="rule-item"><strong>קרא לפני עלות השחר:</strong> לא יצא. מ״עלות השחר״ – בדיעבד יצא.</li>
+          <li class="rule-item"><strong>ק״ש של ערבית:</strong> אם לא קרא עד חצות – יכול עד עמוד השחר. אבל לא יאמר גם של שחרית מיד.</li>
+          <li class="rule-item"><strong>תשלומין:</strong> ק״ש אין לה תשלומין אמיתיים, אך צריך לאומרה כקריאת תורה.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">פ״ט</span>
+          <span class="topic-name">זמן תפילת שחרית ואיסורים לפניה</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>זמן עיקרי:</strong> נץ החמה. בדיעבד: ״האיר פני המזרח״. סוף זמן ״לכתחילה״: שליש ראשון של היום. עד חצות – יצא בלי שכר בזמנה.</li>
+          <li class="rule-item"><strong>שלום לחבר:</strong> לא ילך לפתח חבירו לפני תפילה. בדרך – יכול לענות בצורה מינימלית.</li>
+          <li class="rule-item"><strong>אכילה ושתיה:</strong> אסור לאכול. מים – מותר. תה/קפה לצורך התעוררות – מותר (בלי סוכר לכתחילה; יש מתירים עם סוכר).</li>
+          <li class="rule-item"><strong>התחיל לאכול לפני עלות השחר:</strong> אם הגיע עלות השחר – צריך להפסיק לתפילה (ולק״ש).</li>
+          <li class="rule-item"><strong>לימוד לפני תפילה:</strong> אסור להתחיל מעלות השחר. אם התחיל קודם – יכול להמשיך, ובלבד שלא יפסיד זמן.</li>
+          <li class="rule-item"><strong>ספר/מרחץ/מכולת:</strong> אסור. קנייה לצורך שבת (מצוה) – מותר.</li>
+          <li class="rule-item"><strong>מנחה ומעריב:</strong> האיסורים חלים גם עליהם.</li>
+          <li class="rule-item"><strong>חולה/רעב:</strong> יכול לאכול כי דינו כחולה לצורך ריכוז.</li>
+          <li class="rule-item"><strong>יוצא לדרך:</strong> יש לשקול: האם יוכל לעמוד, להתרכז, להגיע לזמן. מסדר מה יאמר בבית ומה בדרך.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">צ׳</span>
+          <span class="topic-name">מקום התפילה ומיקום המתפלל</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>לא יתפלל על מקום גבוה:</strong> 3 טפחים ומעלה. זקן/חולה – יכול.</li>
+          <li class="rule-item"><strong>חלון:</strong> מצוה לפתוח חלונות כנגד ירושלים. עוזרים לכוונה.</li>
+          <li class="rule-item"><strong>ביהמ״ד vs ביהכ״נ:</strong> סדר עדיפויות (מהגבוה לנמוך): ביהכ״נ עם מנין מסודר → ביהכ״נ מנין גדול לא מסודר → מנין בבית → בית לבד בשעת מנין → ביהכ״נ לבד.</li>
+          <li class="rule-item"><strong>חציצה:</strong> לא יהא דבר חוצץ בינו לבין הקיר (תוך 4 אמות). מיטה ובעלי חיים – חוצצים. אדם – חוצץ. כלים קבועים של תפילה (עמוד) – לא חוצצים.</li>
+          <li class="rule-item"><strong>תפילה לפני/בצד/אחורי רבו:</strong> אסור. מרחק 4 אמות לצד ומאחור + 3 פסיעות. תלמיד חכם – מותר בצד ומאחור.</li>
+          <li class="rule-item"><strong>הגדרת ״רב״:</strong> הרב שלו מפיו למד. אבי לדינים אלו – מחלוקת.</li>
+          <li class="rule-item"><strong>מקום קבוע:</strong> מצוה לקבוע מקום בביהכ״נ ובתוך הביהכ״נ.</li>
+          <li class="rule-item"><strong>ריחוק מטינוף:</strong> 4 אמות מלפניו. אם הופיע באמצע – שותק ומתקדם עד שמותר.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /month-jeshvan -->
+
+
+<!-- ===== KISLEV ===== -->
+<div id="month-kislev" class="month-section month-kislev">
+  <div class="month-header">
+    <div class="month-tag" style="color:#b08ad0">חודש ד׳ · KISLEV</div>
+    <div class="month-title">כסליו</div>
+    <div class="month-topic">הלכות הזכרת טל ומטר, קריאת התורה ובית הכנסת</div>
+    <div class="month-simanim">
+      <span>קי״ד</span><span>קט״ז</span><span>קל״ה</span><span>קל״ו</span><span>קל״ט</span>
+      <span>קמ״א</span><span>קמ״ב</span><span>קמ״ג</span><span>קנ״א</span><span>קנ״ג</span>
+    </div>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-box-title">🎯 שאלות המבחן</div>
+    <div class="exam-q"><strong>1.</strong> טעה בהזכרת משיב הרוח/מוריד הגשם ובהזכרת מוריד הטל – מה דינו?</div>
+    <div class="exam-q"><strong>2.</strong> טעה בשאילת טל ומטר – מתי חוזר / לא חוזר. ספק אם שאל.</div>
+    <div class="exam-q"><strong>3.</strong> ישוב שאין בו בעל קורא שיודע לקרות בטעמים ובדקדוק.</div>
+    <div class="exam-q"><strong>4.</strong> ציבור שאין שם אלא אחד שיודע לברך.</div>
+    <div class="exam-q"><strong>5.</strong> כהן ולוי עולים למנין שבעה בשבתות ומועדים. אב ובנו זה אחר זה.</div>
+    <div class="exam-q"><strong>6.</strong> קרא בתורה וטעה – מתי מחזירים, מתי לא.</div>
+    <div class="exam-q"><strong>7.</strong> טלטול ספר תורה למנין פרטי בבית – תנאים.</div>
+    <div class="exam-q"><strong>8.</strong> הספד בבית הכנסת. תנאי בשעת בניית ביהכ״נ לשימושים אחרים.</div>
+    <div class="exam-q"><strong>9.</strong> הבדלים בין קדושת ביהכ״נ לביהמ״ד. ביהמ״ד של יחיד.</div>
+    <div class="exam-q"><strong>10.</strong> שינה/שימוש בדירה שמעל ביהכ״נ.</div>
+  </div>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">קי״ד–קי״ז</span>
+          <span class="topic-name">הזכרת טל ומטר – טעויות</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <table class="summary-table">
+          <tr><th>מה אמר</th><th>מתי</th><th>דין</th></tr>
+          <tr><td>משיב הרוח שלא בזמנו</td><td>קיץ</td><td>לא חוזר</td></tr>
+          <tr><td>לא אמר משיב הרוח</td><td>חורף</td><td>חוזר</td></tr>
+          <tr><td>מוריד הגשם (גם עם הטל)</td><td>קיץ</td><td>חוזר</td></tr>
+          <tr><td>מוריד הטל</td><td>חורף</td><td>לא חוזר</td></tr>
+          <tr><td>ותן ברכה במקום ותן טל ומטר</td><td>חורף</td><td>חוזר</td></tr>
+        </table>
+        <ul class="rule-list" style="margin-top:12px">
+          <li class="rule-item"><strong>ספק:</strong> תוך 30 יום / 90 תפילות – חוזר. אחרי כן – לא חוזר (ספק ברכות להקל).</li>
+          <li class="rule-item"><strong>שאילת גשם (קי״ז):</strong> בא״י מ-ז׳ חשון. בחו״ל מ-60 יום מתקופה. שכח ולא שאל בברכת השנים – חוזר.</li>
+          <li class="rule-item"><strong>נזכר לפני שומע תפילה:</strong> אומר שם. נזכר אחרי – חוזר לברכת השנים. נזכר אחרי שסיים – חוזר לראש.</li>
+          <li class="rule-item"><strong>טעה ואמר ״ותן ברכה״ בקיץ:</strong> לא חוזר. ״ותן טל ומטר״ בקיץ – חוזר.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">קל״ה–קמ״ג</span>
+          <span class="topic-name">קריאת התורה – סדר ופרטים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מוסד הקריאה:</strong> משה – שבת, שני וחמישי. עזרא – מנחת שבת ומוסף ״יושבי קרנות״.</li>
+          <li class="rule-item"><strong>שגה בקריאה:</strong> אם שינה ״המשנה את המשמעות״ – חוזר. שגיאה בניגון/ניקוד בלבד – לא חוזר, אך מוכיחים אותו.</li>
+          <li class="rule-item"><strong>אין בעל קורא:</strong> יכולים לקרוא מהחומש בלי ברכה. אם יש קורא שאינו בקי בטעמים – קורא עם ברכה.</li>
+          <li class="rule-item"><strong>אין שיודע לברך:</strong> כולם עולים ואחד קורא בשבילם. העולה אומר את הברכה והקורא קורא.</li>
+          <li class="rule-item"><strong>עליית כהן ולוי בז׳:</strong> כהן ולוי נכללים במניין שבעה. אב ובנו זה אחר זה – אין עולים בגלל עין הרע. אב ונכד – מחלוקת, בצורך מותר.</li>
+          <li class="rule-item"><strong>ספר תורה פסול:</strong> עוצרים, מביאים אחר, ממשיכים מהמקום שעצרו. מה שנקרא קודם – עולה למניין.</li>
+          <li class="rule-item"><strong>ספר תורה למנין פרטי:</strong> לא לכתחילה לשאת ס״ת אליו. אם קובעים לו מקום מוגדר – מותר. לתלמיד חכם – יש יותר מקום להקל.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">קנ״א–קנ״ג</span>
+          <span class="topic-name">קדושת בית הכנסת</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>איסורים בביהכ״נ:</strong> אכילה, שתייה, שינה (רגילה), עסקים, שיחת חולין, לשון הרע.</li>
+          <li class="rule-item"><strong>לומדי תורה שם:</strong> מותרים לאכול ולישון שם – כי זה ״בית הספר״ שלהם.</li>
+          <li class="rule-item"><strong>נכנס לצורך עצמי:</strong> צריך לומר פסוק או לשהות מעט לצורך רוחני.</li>
+          <li class="rule-item"><strong>סעודת מצוה:</strong> מותרת אם אין מקום אחר (סיום). ״קלות ראש״ – אסורה.</li>
+          <li class="rule-item"><strong>הבדל ביהכ״נ vs ביהמ״ד:</strong> ביהמ״ד – קדוש יותר. ביהמ״ד של יחיד – ספק אם קדוש.</li>
+          <li class="rule-item"><strong>תנאי בשעת בניה:</strong> מועיל רק אחרי חורבן, לא בזמן שהוא פועל. בחו״ל – מועיל לדברים מותרים. בא״י – לא מועיל לשימושים פחות מכובדים. לא לאכילה ולהיכנס מפני הגשם.</li>
+          <li class="rule-item"><strong>דירה מעל ביהכ״נ:</strong> שינה מידי פעם – מותר. דירה קבועה – מחלוקת. ישירות מעל הארון – אסור. מעשים מגונים – אסורים לחלוטין.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /month-kislev -->
+
+
+<!-- ===== TEVET ===== -->
+<div id="month-tevet" class="month-section month-tevet">
+  <div class="month-header">
+    <div class="month-tag" style="color:#d08a8a">חודש ה׳ · TEVET</div>
+    <div class="month-title">טבת</div>
+    <div class="month-topic">הלכות ברכות וברכת המזון</div>
+    <div class="month-simanim">
+      <span>קס״ח</span><span>קפ״ד</span><span>קפ״ה</span><span>קפ״ו</span><span>קפ״ח</span>
+      <span>רי״א</span><span>רי״ב</span>
+    </div>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-box-title">🎯 שאלות המבחן</div>
+    <div class="exam-q"><strong>1.</strong> מהי ״פת הבאה בכיסנין״? שיעור קביעות סעודה לענין ברכת המזון.</div>
+    <div class="exam-q"><strong>2.</strong> עיסה שבלילתה עבה שבישלה/טיגנה – ברכה תחילה וסוף.</div>
+    <div class="exam-q"><strong>3.</strong> בצק שבישלו/טיגנו בשמן – ברכתו.</div>
+    <div class="exam-q"><strong>4.</strong> פת השרויה ביין לבן או אדום – ברכתה.</div>
+    <div class="exam-q"><strong>5.</strong> ספק אם בירך ברכת המזון – מברך ברכה רביעית? יכול להוציא אחרים?</div>
+    <div class="exam-q"><strong>6.</strong> אכל פת ופירות ושכח לברך – עד מתי יכול לברך?</div>
+    <div class="exam-q"><strong>7.</strong> בירך ברכת המזון כשהוא שיכור / במקום לא נקי – יצא?</div>
+    <div class="exam-q"><strong>8.</strong> אשה מוציאה אשה. אשה שאינה זוכרת אם בירכה.</div>
+    <div class="exam-q"><strong>9.</strong> אכל פת ועקר ממקומו – בשוגג ובמזיד. מקומות שמברך לכתחילה שלא במקומו.</div>
+    <div class="exam-q"><strong>10.</strong> עד מתי מברכים ברכת המזון. סעודות גדולות שעבר זמן הפת.</div>
+  </div>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">קס״ח</span>
+          <span class="topic-name">סוגי פת וברכותיהם</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>עדיפות בברכה:</strong> ז׳ מינים → שלם → נקי → גדול → חביב.</li>
+          <li class="rule-item"><strong>פת הבאה בכיסנין:</strong> בצק מתוק / ממולא / אפוי דק דק – שאין אוכלים כסעודה קבועה. ברכתו: מזונות + על המחיה.</li>
+          <li class="rule-item"><strong>קביעות סעודה בכיסנין:</strong> 3-4 ביצים (162-216 גרם) תוך 7.5 דק׳ – חייב בהמוציא ובמ״ה. מחלוקת בשיעור. אם התחיל ולא כיוון ואחר כך אכל הרבה – חייב בבה״מ.</li>
+          <li class="rule-item"><strong>עיסה שבישלה:</strong> בלילה עבה – המוציא ובמ״ה (כי עדיין ״פת״). בלילה רכה – מזונות + על המחיה.</li>
+          <li class="rule-item"><strong>בצק שטיגן בשמן:</strong> מזונות ועל המחיה. אם בשמן רב ושמן מרכיב – מחלוקת.</li>
+          <li class="rule-item"><strong>פת ביין לבן:</strong> אם לא שינה תואר הלחם – המוציא. אם שינה – מזונות. יין אדום – מזונות.</li>
+          <li class="rule-item"><strong>פירורים מבושלים:</strong> עם כזית – המוציא. בלי כזית – מזונות. ללא בישול עם כזית – אם יש תואר לחם: המוציא; אם אין: מזונות.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">קפ״ד</span>
+          <span class="topic-name">מקום ברכת המזון ועזיבת מקום</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>כלל:</strong> מברך ברכת המזון במקום שאכל. תוך 4 אמות – אותו מקום. חדר סמוך – מותר אם רואה.</li>
+          <li class="rule-item"><strong>יצא מהמקום:</strong> אם במזיד – צריך לחזור (אך לא חוזר על ברכה). אם בשוגג – לפי המ״ב: לא חוזר, אך נכון לחזור אם יכול.</li>
+          <li class="rule-item"><strong>תקנה על ידי אכילת פת:</strong> אכל קצת פת במקום החדש – ״מאחד״ שני המקומות. מברך שם. תנאי: תוך 72 דקות ולא רעב.</li>
+          <li class="rule-item"><strong>ספק אם בירך:</strong> אם שבע – חוזר ומברך (כולל ברכה ד׳). אם לא שבע – מדרבנן, וספק ברכות להקל.</li>
+          <li class="rule-item"><strong>עד מתי יכול לברך:</strong> תוך 72 דקות ולא רעב. אם עברו 72 דקות ורעב – איבד את הברכה.</li>
+          <li class="rule-item"><strong>שיכור:</strong> עד שלא יכול לדבר לפני מלך – יש ספק. אם כבר שקעה החמה: אם ש.ח. לפני מלך, מברך. שיכור לגמרי כלוט – פטור.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">קפ״ה–קפ״ו</span>
+          <span class="topic-name">הוצאת אחרים ואשה בבה״מ</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>חיוב אשה:</strong> מחלוקת אם דאורייתא או דרבנן. צד דאורייתא: מ״ע שאינה ז״ג. צד דרבנן: אין להן חלק בארץ ישראל.</li>
+          <li class="rule-item"><strong>אשה מוציאה אשה:</strong> כן, כי חיובן שווה. אשה מוציאה איש – בעייתי אם חיובו מה״ת וחיובה מדרבנן.</li>
+          <li class="rule-item"><strong>אשה שכחה אם בירכה:</strong> מחלוקת. מי שרוצה לחזור ולברך – יש על מה לסמוך.</li>
+          <li class="rule-item"><strong>קטן מוציא אביו:</strong> רק אם האב לא אכל עד שביעה (שניהם דרבנן). לא מוציא אשה.</li>
+          <li class="rule-item"><strong>ברכת המזון בשכרות:</strong> אם מדבר לפני מלך – מברך. ספק – בתוך 72 דקות חוזר ומברך.</li>
+          <li class="rule-item"><strong>מקום מטונף:</strong> לכתחילה אסור. אם מצא צואה אחרי שסיים – חוזר ומברך (בתוך הזמן). שתן שמצא אחרי – לא חוזר.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">קפ״ח</span>
+          <span class="topic-name">הוספות בברכת המזון</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>רצה (שבת):</strong> אם שכח – אם עדיין לפני ״הטוב והמטיב״ – אומר תיקון. אם כבר הגיע – חוזר לראש. בשבת ויו״ט – חוזר (כי חייב לאכול פת).</li>
+          <li class="rule-item"><strong>יעלה ויבוא (ר״ח, יו״ט):</strong> שכח – בר״ח לא חוזר (אין חיוב פת). ביו״ט – חוזר. בשבת + ר״ח ושכח רק ר״ח – לא חוזר.</li>
+          <li class="rule-item"><strong>סדר: ראשון רצה, אחר כך יעלה ויבוא.</strong> אם הפך – בדיעבד יצא.</li>
+          <li class="rule-item"><strong>שכח שבת ויו״ט ביחד:</strong> מתקן שניהם בבה״מ אחד.</li>
+          <li class="rule-item"><strong>ספק אם אמר:</strong> בשבת ויו״ט – חזקה לא אמר. לפני הטוב והמטיב – מתקן. אחרי – חוזר לראש.</li>
+          <li class="rule-item"><strong>סעודה שלישית:</strong> אם שכח ורצה לחזור ולא הגיע עדיין להטוב – מתקן. הגיע להטוב – לא חוזר (יש שלא חייבים פת בסמ״ג).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">רי״א–רי״ב</span>
+          <span class="topic-name">קדימה בברכות ועיקר וטפל</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מתי חל דין קדימה:</strong> רק כשכולם לפניו וכוונתו לאכול מכולם.</li>
+          <li class="rule-item"><strong>קדימת מין שבעה:</strong> גובר על שלם, על גדול, ועל חביב. אלא אם ברכותיהם שונות.</li>
+          <li class="rule-item"><strong>סדר מין שבעה לפי הפסוק:</strong> חיטה → שעורה → גפן → תאנה → רימון → זית → תמר (דבש). הקרוב ל״ארץ השנייה״ קודם: זית לפני גפן.</li>
+          <li class="rule-item"><strong>בין ברכות שונות:</strong> עץ > שהכל. אדמה > שהכל. עץ vs אדמה – אם שניהם שווים: עץ קודם. אם אדמה חביב יותר – הוא קודם.</li>
+          <li class="rule-item"><strong>עיקר וטפל:</strong> ברכה על העיקר פוטרת הטפל. שטפל לפגום/לתקן/לשתות – פטור. שטפל גם אוכלו לעצמו – צריך ברכה.</li>
+          <li class="rule-item"><strong>מיעוט חמשת הדגנים:</strong> אפילו מיעוט – אם לטעם – ברכתו מזונות ופוטר הכל.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /month-tevet -->
+
+
+<!-- ===== SHVAT ===== -->
+<div id="month-shvat" class="month-section month-shvat">
+  <div class="month-header">
+    <div class="month-tag" style="color:#8ad0b0">חודש ו׳ · SHVAT</div>
+    <div class="month-title">שבט</div>
+    <div class="month-topic">הלכות פסח א׳ – מכירה, הגעלה, איסורי אכילה, הסיבה</div>
+    <div class="month-simanim">
+      <span>תל״ד</span><span>תמ״ח</span><span>תנ״א</span><span>תנ״ב</span><span>תע״א</span><span>תע״ב</span>
+    </div>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-box-title">🎯 שאלות המבחן</div>
+    <div class="exam-q"><strong>1.</strong> מכירת חמץ – אלו קניינים. אדם פרטי – סיבות להחמיר שלא לסמוך.</div>
+    <div class="exam-q"><strong>2.</strong> הגעלת כלים: חרס בחמץ חם/קר. זכוכית. סכינים, סירים, תבניות, כלי עץ, כלי אבן.</div>
+    <div class="exam-q"><strong>3.</strong> שפודים ואסכלאות – גדר ליבון.</div>
+    <div class="exam-q"><strong>4.</strong> כבולעו כך פולטו – כלי ראשון, עירוי, ללא נוזלים, כלי שני, גוש, כלי גדול.</div>
+    <div class="exam-q"><strong>5.</strong> רוב תשמישו של הכלי – מחלוקת שו״ע ורמ״א. השתמש תוך 24 שעות. בדיעבד לרמ״א.</div>
+    <div class="exam-q"><strong>6.</strong> איסור אכילת פת משעה עשירית – שיעור, התחיל, קטניות/תפו״א, מחצות.</div>
+    <div class="exam-q"><strong>7.</strong> איסור מצה בערב פסח – מצה שלא לשם מצה, מצה עשירה, עוגה מקמח מצה עם יין, מצה מבושלת.</div>
+    <div class="exam-q"><strong>8.</strong> זמן תחילת הקידוש בליל הסדר. הקדים בדיעבד.</div>
+    <div class="exam-q"><strong>9.</strong> הסיבה – חייבים ופטורים. אכל בלא הסיבה.</div>
+    <div class="exam-q"><strong>10.</strong> אשה שלא היסבה. גידם ביד ימינו.</div>
+  </div>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תל״ד</span>
+          <span class="topic-name">בדיקת חמץ ובית החמץ</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מתי:</strong> ליל י״ד מיד אחרי צאת הכוכבים. לא להתחיל מלאכה חצי שעה לפני.</li>
+          <li class="rule-item"><strong>מאור:</strong> נר שעוה. לא לפיד. לא נר של שמן. לא נר שומן (בדיעבד – יצא). שני נרות מחוברים = פיד.</li>
+          <li class="rule-item"><strong>היכן בודק:</strong> כל מקום שמכניסים שם חמץ גם מדי פעם. חורים בקירות, כיסים, בית הכנסת.</li>
+          <li class="rule-item"><strong>ברכה:</strong> ״על ביעור חמץ״ לפני הבדיקה. לא ידבר בין ברכה לבדיקה. אם דיבר – חוזר ומברך.</li>
+          <li class="rule-item"><strong>ביטול:</strong> בלילה: ״כל חמירא... כעפרא דארעא״. ביום: אחרי שריפה – ביטול שני יותר מפורש.</li>
+          <li class="rule-item"><strong>מנהג להניח 10 חתיכות:</strong> קשות, במקום שמור. לא לאבד אפילו אחת!</li>
+          <li class="rule-item"><strong>בדיקת י״ג בלילה:</strong> בדיעבד לא צריך לחזור. ליל י״ג בלי ברכה.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תמ״ח</span>
+          <span class="topic-name">מכירת חמץ – גדרים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>חמץ שעבר עליו הפסח:</strong> אסור בהנאה (קנס מדרבנן). אפילו שגגה ואונס.</li>
+          <li class="rule-item"><strong>חמץ של גוי שעבר פסח:</strong> מותר – כי לא היה ברשות ישראל.</li>
+          <li class="rule-item"><strong>תנאים במכירה:</strong> לא יכול לפדות מיד. לא תנאי ״אם...״. לא למנוע מכירה לאחר. הגוי חייב לגשת ולקחת – לא שמחסן נשאר סגור.</li>
+          <li class="rule-item"><strong>קניינים:</strong> כסף + משיכה (+ מפתח לחדר). בדיעבד – קניין אחד מספיק (דרבנן).</li>
+          <li class="rule-item"><strong>סיבות להחמיר לאדם פרטי:</strong> הגוי לא משתמש ממש, אין משיכה אמיתית, חוששים שהמכירה הינה ״הערמה״.</li>
+          <li class="rule-item"><strong>קיבל חמץ מגוי בפסח:</strong> אסור לקבל. אם ידוע שאינו חפץ בו – לא נקנה לו.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תנ״א</span>
+          <span class="topic-name">כבולעו כך פולטו – כלל ההגעלה</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>הכלל:</strong> כפי שבלע – כך פולט. השימוש עם חמץ קובע כיצד מכשירים.</li>
+          <li class="rule-item"><strong>כלי ראשון על האש:</strong> הגעלה בכלי ראשון. מים בקיפה פעילה.</li>
+          <li class="rule-item"><strong>כלי שני:</strong> הגעלה בכלי שני מספיקה.</li>
+          <li class="rule-item"><strong>עירוי מכלי ראשון:</strong> הגעלה בעירוי רצוף.</li>
+          <li class="rule-item"><strong>בליעה ללא נוזלים (צלייה):</strong> צריך ליבון (שפודים, אסכלאות).</li>
+          <li class="rule-item"><strong>ליבון קל vs חמור:</strong> ספודים – עד שיתיזו ניצוצות. שאר כלים – עד שיעלה קמח חרוך מבחוץ.</li>
+          <li class="rule-item"><strong>כלי גדול:</strong> מניחים אבן לוהטת לתוכו עם מים רותחים.</li>
+          <li class="rule-item"><strong>תנאי ההגעלה:</strong> לפני שעה ה׳. מים בקיפה. כלי לא בן יומו (24 שעות). לא כלים של בשר ובחלב יחד.</li>
+        </ul>
+        <div class="sub-section">
+          <div class="sub-section-title">טבלת כלים</div>
+          <table class="summary-table">
+            <tr><th>כלי</th><th>שיטת הכשרה</th><th>הערות</th></tr>
+            <tr><td>סכינים</td><td>הגעלה + ניקוי חלודה</td><td>לכתחילה קנה חדש</td></tr>
+            <tr><td>סירים/קדרות</td><td>הגעלה בכלי ראשון</td><td>גם הידיות</td></tr>
+            <tr><td>תבניות אפייה</td><td>ליבון</td><td>אם יש טפלון: כחרס</td></tr>
+            <tr><td>כלי עץ חלק</td><td>הגעלה</td><td>אם יש סדקים – לא מועיל</td></tr>
+            <tr><td>כלי אבן</td><td>הגעלה</td><td>כמו מתכת</td></tr>
+            <tr><td>כלי זכוכית</td><td>מחלוקת: יש שאינה בולעת</td><td>מנהג: שלא להשתמש</td></tr>
+            <tr><td>כלי חרס</td><td>לא מועילה הגעלה!</td><td>לא להשתמש בפסח</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תנ״ב</span>
+          <span class="topic-name">פרטי ההגעלה</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>לפני שעה ה׳:</strong> מים חמץ הפקר (לא בן יומו מועיל). אחרי שעה ה׳ – צריך כלי לא בן יומו + שישים.</li>
+          <li class="rule-item"><strong>בפסח עצמו:</strong> לא מועילה הגעלה כלל (חמץ במשהו).</li>
+          <li class="rule-item"><strong>מים רותחים:</strong> רק בקיפה פעילה – לא ״יד סולדת בו״ בלבד.</li>
+          <li class="rule-item"><strong>טבילה בסל מנוקב:</strong> כלים לא נוגעים זה בזה. אחרת במקום המגע – לא מועיל.</li>
+          <li class="rule-item"><strong>סיבוב הכלי:</strong> כדי שהמים יגיעו לכל מקום כולל מקום האחיזה.</li>
+          <li class="rule-item"><strong>שטיפה קרה אחרי ההגעלה:</strong> מיד, כדי שלא יחזור ויבלע.</li>
+          <li class="rule-item"><strong>בשר + חלב יחד:</strong> אסור להגעיל. אם אחד בן יומו ואחד לא – מותר בתנאים.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תע״א–תע״ב</span>
+          <span class="topic-name">ערב פסח – איסורי אכילה והסיבה</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>איסור פת משעה עשירית:</strong> פת, מצה אשירה, מיני מזונות אחרי שעה י׳.</li>
+          <li class="rule-item"><strong>מה מותר:</strong> פירות, בשר, ביצים, ירקות. לא: חמשת הדגנים אפילו מבושלים בפירות.</li>
+          <li class="rule-item"><strong>מצה בערב פסח:</strong> מצה הכשרה לסדר – אסורה מעמוד השחר. מצה עשירה (עם מיץ) – מותרת עד שעה י׳ (מחלוקת אם מותרת בכלל בחו״ל).</li>
+          <li class="rule-item"><strong>ילד:</strong> קטן שאין לו דעת – יכול לאכול. עם דעת – אסור (כדי שהמצה תהיה חדשה לו).</li>
+          <li class="rule-item"><strong>קידוש:</strong> מתחיל מצאת הכוכבים. לא ניתן לקדש לפני. בדיעבד אם קידש – מחלוקת.</li>
+          <li class="rule-item"><strong>הסיבה – חייבים:</strong> אנשים, נשים (עיקר דין), עבד, תלמיד לפני רבו (בן חייב לפני אביו – רשאי).</li>
+          <li class="rule-item"><strong>הסיבה – פטורים:</strong> אשה בדרך כלל (לא בזמן הזה). תלמיד לפני רבו – אסור בלי רשות.</li>
+          <li class="rule-item"><strong>אכל בלי הסיבה:</strong> מצה ראשונה וארבע כוסות ראשונות – חוזר. שתי אחרונות – לא חוזר.</li>
+          <li class="rule-item"><strong>גידם ביד ימינו:</strong> מסב לצד שנוח לו.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /month-shvat -->
+
+
+<!-- ===== ADAR ===== -->
+<div id="month-adar" class="month-section month-adar">
+  <div class="month-header">
+    <div class="month-tag" style="color:#d0b08a">חודש ז׳ · ADAR</div>
+    <div class="month-title">אדר</div>
+    <div class="month-topic">הלכות ליל הסדר – הגדה, מרור, מצה, אפיקומן, ספירת העומר</div>
+    <div class="month-simanim">
+      <span>תע״ב–תע״ו</span><span>תע״ח–תפ״ח</span><span>תפ״ט</span>
+    </div>
+  </div>
+
+  <div class="exam-box">
+    <div class="exam-box-title">🎯 שאלות המבחן</div>
+    <div class="exam-q"><strong>1.</strong> שהחיינו בליל הסדר – לא אמר, האם יכול כל שבעה. הטיה בהגדה. אכילה באמצע ההגדה.</div>
+    <div class="exam-q"><strong>2.</strong> מרור – צריך להיות לח? דין מרור כבוש.</div>
+    <div class="exam-q"><strong>3.</strong> מרור בחומץ. מי שקשה לו לאכול מרור / חולה.</div>
+    <div class="exam-q"><strong>4.</strong> נטילת ידים לסעודה. נתכוין בנטילה ראשונה לגמור סעודתו.</div>
+    <div class="exam-q"><strong>5.</strong> זקן/חולה/מעט מים. טעה ובירך ״על אכילת מצה״ במקום ״המוציא״.</div>
+    <div class="exam-q"><strong>6.</strong> ב׳ כזיתות במוציא מצה – מדוע? כל אחד מהמסובים? קשה לו לאכול ב׳ כזיתות.</div>
+    <div class="exam-q"><strong>7.</strong> אכילה לאחר אפיקומן – עבר ואכל / עד מתי אסור / ישן והתעורר / שתייה אחר אפיקומן.</div>
+    <div class="exam-q"><strong>8.</strong> טעה ולא הזכיר שם החג, רק יו״ט מקרא קדש. התפלל ביעלה ויבוא בלבד.</div>
+    <div class="exam-q"><strong>9.</strong> ספירת העומר – ימים ולא שבועות / ראשי תיבות / בלעז.</div>
+    <div class="exam-q"><strong>10.</strong> אמר לחבר המספר של אותו יום. פתח אדעתא דיום לא נכון וסיים ביום הנכון.</div>
+  </div>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תע״ב–תע״ג</span>
+          <span class="topic-name">ליל הסדר – סדר ופרטים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>תחילת הסדר:</strong> רק מצאת הכוכבים (לא מבין השמשות). ממהרים כדי שהילדים לא ישנו.</li>
+          <li class="rule-item"><strong>שהחיינו:</strong> לפני שתיית הכוס. שכח בלילה א׳ – אומר כשיזכר בכל שבעה. שכח בלילה ב׳ – אומר כל שבעה.</li>
+          <li class="rule-item"><strong>כוס ראשונה:</strong> בהסיבה. לא מברכים ברכה אחרונה – כי תהיה ברכה אחרונה בסוף.</li>
+          <li class="rule-item"><strong>שתיה בין כוסות:</strong> בין ראשונה לשנייה – מותר. בין שלישית לרביעית – אסור.</li>
+          <li class="rule-item"><strong>הגדה:</strong> יושבים ואומרים (לא בהסיבה). בשפה מובנת. נשים חייבות לשמוע לפחות מ״רבן גמליאל אומר״.</li>
+          <li class="rule-item"><strong>מוציא מצה:</strong> שלוש מצות. עליונה לשם ״המוציא״, שבורה ל״על אכילת מצה״. לכתחילה כזית מכל אחת. מסיבה.</li>
+          <li class="rule-item"><strong>ניגוד:</strong> אין להפסיק בין מצה, מרור, כורך בדיבור (בדיעבד – לא פוסל).</li>
+          <li class="rule-item"><strong>יקנה״ז (שבת + יו״ט):</strong> יין, קידוש, נר, הבדלה, זמן. בלי בשמים. בישיבה.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תע״ה</span>
+          <span class="topic-name">מצה ומרור – אכילה וברכות</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>נטילה לסעודה:</strong> נוטל שוב לפני המצה (הפסק של הגדה). לא מברכים (כי כבר נטל בקידוש).</li>
+          <li class="rule-item"><strong>ב׳ כזיתות במוציא:</strong> כזית מהשלמה (להמוציא) + כזית מהשבורה (לאכילת מצה). שניהם בהסיבה.</li>
+          <li class="rule-item"><strong>מי שקשה לו:</strong> כזית אחד בלבד. אם קשה מאוד – לועס מעט בלי ברכה.</li>
+          <li class="rule-item"><strong>מרור:</strong> כזית. בהסיבה? מחלוקת – מנהג: לא מסב (זכר לעבדות). צריך לחוש טעם המרירות.</li>
+          <li class="rule-item"><strong>מרור לח / כבוש:</strong> לח – כשר. כבוש 24 שעות – פסול לכתחילה (נחשב כמבושל).</li>
+          <li class="rule-item"><strong>מרור בחומץ:</strong> אסור – חומץ מבטל מרירות. מרור מבושל – פסול.</li>
+          <li class="rule-item"><strong>חולה / קשה לו:</strong> יכול לאכול כמה שיכול בלי ברכה (לזכר).</li>
+          <li class="rule-item"><strong>כורך:</strong> כזית מצה + כזית מרור. בהסיבה. זכר להלל. אינו ממלא חובת מצה/מרור.</li>
+          <li class="rule-item"><strong>בליעה בלי לעיסה:</strong> מצה – בדיעבד יצא (תאוות גרון). מרור – לא יצא (צריך לחוש מרירות).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תע״ז–תע״ח</span>
+          <span class="topic-name">אפיקומן</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>כמה כזיתות:</strong> לכתחילה שניים (זכר לקרבן פסח + זכר לאכילת מצה). מינימום אחד.</li>
+          <li class="rule-item"><strong>מתי:</strong> לפני חצות לכתחילה. אחרי חצות – אוכל בלי ברכה.</li>
+          <li class="rule-item"><strong>בהסיבה:</strong> כן, גם לנשים לפי הרמ״א.</li>
+          <li class="rule-item"><strong>שכח אפיקומן:</strong>
+            <br>נזכר לפני בה״מ – חוזר ואוכל
+            <br>נזכר אחרי בה״מ לפני כוס ג׳ – נוטל, אוכל, שוב כוס ג׳
+            <br>נזכר אחרי כוס ג׳ – מחלוקת (יש שאומרים שלא יאכל כדי לא להוסיף כוסות)
+            <br>נזכר אחרי הלל/כוס ד׳ – כן אוכל, כוס החדשה נחשבת כוס ג׳</li>
+          <li class="rule-item"><strong>אחרי אפיקומן:</strong> לא לאכול שום דבר. שתיה – מחלוקת. לכתחילה: רק מים.</li>
+          <li class="rule-item"><strong>ישן אחרי אפיקומן:</strong> נחשב כאוכל בשני מקומות – צריך לחזור ולאכול.</li>
+          <li class="rule-item"><strong>לא יאכל בשני מקומות:</strong> אפיקומן צריך באותו מקום. אפילו שתי שולחנות באותו חדר – שני מקומות.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תפ״ז</span>
+          <span class="topic-name">קידוש ויעלה ויבוא בפסח</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>נוסח:</strong> ״מקדש ישראל והזמנים״. לא יאמר רק ״מקדש ישראל״ – לא יצא.</li>
+          <li class="rule-item"><strong>שבת + יו״ט:</strong> ״מקדש השבת וישראל והזמנים״.</li>
+          <li class="rule-item"><strong>שגיאה בחתימה:</strong> אם תוך כדי דיבור – מתקן. אם לאו – חוזר.</li>
+          <li class="rule-item"><strong>שכח ״אתה בחרתנו״:</strong> אם אמר ״יעלה ויבוא״ והזכיר שם החג – יצא. אם לא – חוזר.</li>
+          <li class="rule-item"><strong>אמר יעלה ויבוא בלבד:</strong> אם הזכיר שם החג – יצא. אם לא הזכיר שם – לא יצא.</li>
+          <li class="rule-item"><strong>הלל:</strong> בלילה א׳ (ובלילה ב׳ בחו״ל) עם ברכה. שלם. שכח פסוק אחד – חוזר מאותו מקום.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תפ״ט</span>
+          <span class="topic-name">ספירת העומר</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>מהות:</strong> מצוה על כל אחד לספור. עמידה. לילה (מצאת הכוכבים). ספק ביה״ש – יצא בדיעבד.</li>
+          <li class="rule-item"><strong>ימים ושבועות:</strong> צריך שניהם. שכח שבועות – ספק, חוזר בלי ברכה. שכח ימים – לא יצא.</li>
+          <li class="rule-item"><strong>בראשי תיבות:</strong> לא יצא (לא היה כוונה אמיתית לספור).</li>
+          <li class="rule-item"><strong>בלעז:</strong> יצא אם הבין מה אמר.</li>
+          <li class="rule-item"><strong>אמר לחבר את המספר:</strong> אם לא התכוין לספור – יוכל לספור עם ברכה. אם כן התכוין – אפשר שיצא, ספק בברכה.</li>
+          <li class="rule-item"><strong>פתח ביום לא נכון וסיים בנכון:</strong> העיקר הוא הספירה בפועל. יצא.</li>
+          <li class="rule-item"><strong>שכח יום שלם:</strong> ממשיך בלי ברכה. ספק אם ספר – יכול לספור עם ברכה.</li>
+          <li class="rule-item"><strong>ספר ביום (שכח בלילה):</strong> יצא בדיעבד. ממשיך ספירה עם ברכה הלילות הבאים.</li>
+          <li class="rule-item"><strong>חצי שעה לפני:</strong> אסור לאכול ולעשות מלאכה. אם התחיל – יפסיק לספור.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-siman">תצ״ג</span>
+          <span class="topic-name">ימי הספירה – אבלות ומנהגים</span>
+        </div>
+        <span class="topic-chevron">▼</span>
+      </div>
+      <div class="topic-body">
+        <ul class="rule-list">
+          <li class="rule-item"><strong>איסורים:</strong> לא נושאים נשים. לא מסתפרים. לא ריקודים ומחולות.</li>
+          <li class="rule-item"><strong>אירוסין:</strong> מותר. סעודת אירוסין – מותרת. תנאים.</li>
+          <li class="rule-item"><strong>ל״ג בעומר:</strong> ביום ל״ד כבר מותר מן הבוקר (מקצת היום ככולו). מחלוקת אם מספרים בליל ל״ג.</li>
+          <li class="rule-item"><strong>ברית מילה:</strong> אבי הבן, המוהל, הסנדק – מותרים להסתפר אפילו לפני ל״ג.</li>
+          <li class="rule-item"><strong>שני מנהגים:</strong>
+            <br>מנהג א׳: מנחם אב ועד ל״ג בעומר (33 יום מניסן)
+            <br>מנהג ב׳: ר״ח אייר עד שבועות
+            <br>אין לערבב! יש לנהוג מנהג שלם.</li>
+          <li class="rule-item"><strong>לא יתחתן:</strong> אפילו חתונת מצוה. שב עם גרושה – מותר.</li>
+          <li class="rule-item"><strong>לא אומרים תחנון בל״ג בעומר.</strong></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /month-adar -->
+
+</div><!-- /main -->
+
+<script>
+function showMonth(id) {
+  document.querySelectorAll('.month-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('month-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleCard(card) {
+  card.classList.toggle('open');
+}
+
+// Open all cards in active section for print
+function openAll() {
+  document.querySelectorAll('.month-section.active .topic-card').forEach(c => c.classList.add('open'));
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  const months = ['elul','tishrei','jeshvan','kislev','tevet','shvat','adar'];
+  const current = months.findIndex(m => document.getElementById('month-'+m).classList.contains('active'));
+  if (e.key === 'ArrowRight' && current < months.length - 1) {
+    document.querySelectorAll('.nav-btn')[current + 1].click();
+  }
+  if (e.key === 'ArrowLeft' && current > 0) {
+    document.querySelectorAll('.nav-btn')[current - 1].click();
+  }
+});
+</script>
+
+</body>
+</html>
